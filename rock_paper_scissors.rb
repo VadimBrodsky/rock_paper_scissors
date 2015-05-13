@@ -6,9 +6,9 @@ def game_message(winning_choice)
   when 'p'
     'Paper wraps Rock!'
   when 'r'
-    'Rock Smashes Scissors!'
+    'Rock smashes Scissors!'
   when 's'
-    'Scissors Cut Paper!'
+    'Scissors cut Paper!'
   end
 end
 
@@ -22,7 +22,7 @@ puts "Play Paper Rock Scissors!"
 loop do
 
   begin
-    print "Choose one: (P/R/S) "
+    print "Choose one: (R/P/S) "
     player_choice = gets.chomp.downcase
   end until CONDITIONS.keys.include?(player_choice)
 
