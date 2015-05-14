@@ -53,23 +53,37 @@ LOSING_MESSAGE = 'Computer won!'
 TIE_MESSAGE = "It's a tie."
 
 
-# Determines the winner in terms of player_1
-def game_winner(player_1, player_2)
-  game_outcome = ''
+# Checks if the game is at a tie
+def is_tie?(player_1, player_2)
+  player_1 == player_2 ? true : false
+end
 
-  if player_1 == player_2
-    game_outcome = TIE_MESSAGE
-  else
-    WIN_CONDITIONS.each do |key, value|
-      if key == player_1 && value.include?(player_2)
-        game_outcome = WINNING_MESSAGE
-        break
-      else
-        game_outcome = LOSING_MESSAGE
-        break
-      end
+
+# Checks is player 1 won
+def win?(player_1, player_2)
+  outcome = false
+  WIN_CONDITIONS.each do |key, value|
+    if key == player_1 && value.include?(player_2)
+      outcome = true
+      break
     end
   end
+  outcome
+end
+
+
+# Determines the winner in terms of player_1
+def get_game_outcome(player_1, player_2)
+  game_outcome = ''
+
+  if is_tie?(player_1, player_2)
+    game_outcome = TIE_MESSAGE
+  elsif win?(player_1, player_2)
+    game_outcome = WINNING_MESSAGE
+  else
+    game_outcome = LOSING_MESSAGE
+  end
+
   game_outcome
 end
 
@@ -104,7 +118,7 @@ loop do
   computer_choice = CONDITIONS.keys.sample
 
   puts player_picks(player_choice, computer_choice)
-  puts game_winner(player_choice, computer_choice)
+  puts get_game_outcome(player_choice, computer_choice)
   if player_choice != computer_choice
     puts game_message(player_choice, computer_choice)
   end
