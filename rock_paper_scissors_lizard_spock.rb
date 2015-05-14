@@ -1,29 +1,28 @@
 #
 ####### ROCK / PAPER / SCISSORS / SPOCK / LIZARD #######
-#
-#              :                                 :
-#            :                                   :
-#            :  RRVIttIti+==iiii++iii++=;:,       :
-#            : IBMMMMWWWWMMMMMBXXVVYYIi=;:,        :
-#            : tBBMMMWWWMMMMMMBXXXVYIti;;;:,,      :
-#            t YXIXBMMWMMBMBBRXVIi+==;::;::::       ,
-#           ;t IVYt+=+iIIVMBYi=:,,,=i+=;:::::,      ;;
-#           YX=YVIt+=,,:=VWBt;::::=,,:::;;;:;:     ;;;
-#           VMiXRttItIVRBBWRi:.tXXVVYItiIi==;:   ;;;;
-#           =XIBWMMMBBBMRMBXi;,tXXRRXXXVYYt+;;: ;;;;;
-#            =iBWWMMBBMBBWBY;;;,YXRRRRXXVIi;;;:;,;;;=
-#             iXMMMMMWWBMWMY+;=+IXRRXXVYIi;:;;:,,;;=
-#             iBRBBMMMMYYXV+:,:;+XRXXVIt+;;:;++::;;;
-#             =MRRRBMMBBYtt;::::;+VXVIi=;;;:;=+;;;;=
-#              XBRBBBBBMMBRRVItttYYYYt=;;;;;;==:;=
-#               VRRRRRBRRRRXRVYYIttiti=::;:::=;=
-#                YRRRRXXVIIYIiitt+++ii=:;:::;==
-#                +XRRXIIIIYVVI;i+=;=tt=;::::;:;
-#                 tRRXXVYti++==;;;=iYt;:::::,;;
-#                  IXRRXVVVVYYItiitIIi=:::;,::;
-#                   tVXRRRBBRXVYYYIti;::::,::::
-#                    YVYVYYYYYItti+=:,,,,,:::::;
-#                    YRVI+==;;;;;:,,,,,,,:::::::
+#           :                                 :
+#         :                                   :
+#         :  RRVIttIti+==iiii++iii++=;:,       :
+#         : IBMMMMWWWWMMMMMBXXVVYYIi=;:,        :
+#         : tBBMMMWWWMMMMMMBXXXVYIti;;;:,,      :
+#         t YXIXBMMWMMBMBBRXVIi+==;::;::::       ,
+#        ;t IVYt+=+iIIVMBYi=:,,,=i+=;:::::,      ;;
+#        YX=YVIt+=,,:=VWBt;::::=,,:::;;;:;:     ;;;
+#        VMiXRttItIVRBBWRi:.tXXVVYItiIi==;:   ;;;;
+#        =XIBWMMMBBBMRMBXi;,tXXRRXXXVYYt+;;: ;;;;;
+#         =iBWWMMBBMBBWBY;;;,YXRRRRXXVIi;;;:;,;;;=
+#          iXMMMMMWWBMWMY+;=+IXRRXXVYIi;:;;:,,;;=
+#          iBRBBMMMMYYXV+:,:;+XRXXVIt+;;:;++::;;;
+#          =MRRRBMMBBYtt;::::;+VXVIi=;;;:;=+;;;;=
+#           XBRBBBBBMMBRRVItttYYYYt=;;;;;;==:;=
+#            VRRRRRBRRRRXRVYYIttiti=::;:::=;=
+#             YRRRRXXVIIYIiitt+++ii=:;:::;==
+#             +XRRXIIIIYVVI;i+=;=tt=;::::;:;
+#              tRRXXVYti++==;;;=iYt;:::::,;;
+#               IXRRXVVVVYYItiitIIi=:::;,::;
+#                tVXRRRBBRXVYYYIti;::::,::::
+#                 YVYVYYYYYItti+=:,,,,,:::::;
+#                 YRVI+==;;;;;:,,,,,,,:::::::
 
 # Game pieces
 CONDITIONS = { 'p' => 'Paper', 'r' => 'Rock', 'sc' => 'Scissors',
@@ -36,16 +35,16 @@ WIN_CONDITIONS = { 'r' => ['l', 's'] ,'p' => ['r', 'sp'], 'sc' => ['p', 'l'],
 
 
 # Winning statements
-WIN_STATEMNTS = { ['p', 'r'] => 'Paper wraps Rock!',
-                  ['p', 'sp'] => 'Paper disproves Spock!',
-                  ['r', 'sc'] => 'Rock smashes Scissors!',
-                  ['r', 'l'] => 'Rock crushes Lizard!',
-                  ['sc', 'p'] => 'Scissors cut Paper!',
-                  ['sc', 'l'] => 'Scissors cut Lizard!',
-                  ['l', 'p'] => 'Lizard eats Paper!',
-                  ['l', 'sp'] => 'Lizard poisons Spock!',
+WIN_STATEMNTS = { ['p', 'r']   => 'Paper wraps Rock!',
+                  ['p', 'sp']  => 'Paper disproves Spock!',
+                  ['r', 'sc']  => 'Rock smashes Scissors!',
+                  ['r', 'l']   => 'Rock crushes Lizard!',
+                  ['sc', 'p']  => 'Scissors cut Paper!',
+                  ['sc', 'l']  => 'Scissors cut Lizard!',
+                  ['l', 'p']   => 'Lizard eats Paper!',
+                  ['l', 'sp']  => 'Lizard poisons Spock!',
                   ['sp', 'sc'] => 'Spock smashes Scissors!',
-                  ['sp', 'r'] => 'Spock vaporizes Rock!'}
+                  ['sp', 'r']  => 'Spock vaporizes Rock!'}
 
 
 # User messages
