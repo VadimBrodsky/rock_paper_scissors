@@ -34,17 +34,16 @@ WIN_CONDITIONS = { 'r' => ['l', 's'] ,'p' => ['r', 'sp'], 'sc' => ['p', 'l'],
                    'l' => ['p', 'sp'], 'sp' => ['r', 'sc'] }
 
 
-# Winning statements
-WIN_STATEMNTS = { ['p', 'r']   => 'Paper wraps Rock!',
-                  ['p', 'sp']  => 'Paper disproves Spock!',
-                  ['r', 'sc']  => 'Rock smashes Scissors!',
-                  ['r', 'l']   => 'Rock crushes Lizard!',
-                  ['sc', 'p']  => 'Scissors cut Paper!',
-                  ['sc', 'l']  => 'Scissors cut Lizard!',
-                  ['l', 'p']   => 'Lizard eats Paper!',
-                  ['l', 'sp']  => 'Lizard poisons Spock!',
-                  ['sp', 'sc'] => 'Spock smashes Scissors!',
-                  ['sp', 'r']  => 'Spock vaporizes Rock!'}
+WIN_STATEMNTS = { ['p',  'r' ]  => 'Paper wraps Rock!',
+                  ['p',  'sp']  => 'Paper disproves Spock!',
+                  ['r',  'sc']  => 'Rock smashes Scissors!',
+                  ['r',  'l' ]  => 'Rock crushes Lizard!',
+                  ['sc', 'p' ]  => 'Scissors cut Paper!',
+                  ['sc', 'l' ]  => 'Scissors cut Lizard!',
+                  ['l',  'p' ]  => 'Lizard eats Paper!',
+                  ['l',  'sp']  => 'Lizard poisons Spock!',
+                  ['sp', 'sc']  => 'Spock smashes Scissors!',
+                  ['sp', 'r' ]  => 'Spock vaporizes Rock!'}
 
 
 # User messages
@@ -53,9 +52,8 @@ LOSING_MESSAGE = 'Computer won!'
 TIE_MESSAGE = "It's a tie."
 
 
-# Checks if the game is at a tie
 def is_tie?(player_1, player_2)
-  player_1 == player_2 ? true : false
+  player_1 == player_2
 end
 
 
@@ -72,19 +70,15 @@ def win?(player_1, player_2)
 end
 
 
-# Determines the winner in terms of player_1
-def get_game_outcome(player_1, player_2)
-  game_outcome = ''
-
+# Determines the winner in terms of player_1 and returns a winning message
+def game_outcome_message(player_1, player_2)
   if is_tie?(player_1, player_2)
-    game_outcome = TIE_MESSAGE
+    TIE_MESSAGE
   elsif win?(player_1, player_2)
-    game_outcome = WINNING_MESSAGE
+    WINNING_MESSAGE
   else
-    game_outcome = LOSING_MESSAGE
+    LOSING_MESSAGE
   end
-
-  game_outcome
 end
 
 
@@ -118,7 +112,7 @@ loop do
   computer_choice = CONDITIONS.keys.sample
 
   puts player_picks(player_choice, computer_choice)
-  puts get_game_outcome(player_choice, computer_choice)
+  puts game_outcome_message(player_choice, computer_choice)
   if player_choice != computer_choice
     puts game_message(player_choice, computer_choice)
   end
