@@ -26,15 +26,26 @@
 #                    YRVI+==;;;;;:,,,,,,,:::::::
 
 # Game pieces
-CONDITIONS = { 'p' => 'Paper', 'r' => 'Rock', 'sc' => 'Scissors', 'sp' => 'Spock', 'l' => 'Lizard' }
+CONDITIONS = { 'p' => 'Paper', 'r' => 'Rock', 'sc' => 'Scissors',
+              'sp' => 'Spock', 'l' => 'Lizard' }
 
 
 # Who beats who
-WIN_CONDITIONS = { 'r' => ['l', 's'] ,'p' => ['r', 'sp'], 'sc' => ['p', 'l'], 'l' => ['p', 'sp'], 'sp' => ['r', 'sc'] }
+WIN_CONDITIONS = { 'r' => ['l', 's'] ,'p' => ['r', 'sp'], 'sc' => ['p', 'l'],
+                   'l' => ['p', 'sp'], 'sp' => ['r', 'sc'] }
 
 
 # Winning statements
-WIN_STATEMNTS = { ['p', 'r'] => 'Paper wraps Rock!', ['p', 'sp'] => 'Paper disproves Spock!', ['r', 'sc'] => 'Rock smashes Scissors!', ['r', 'l'] => 'Rock crushes Lizard!', ['sc', 'p'] => 'Scissors cut Paper!', ['sc', 'l'] => 'Scissors cut Lizard!', ['l', 'p'] => 'Lizard eats Paper!', ['l', 'sp'] => 'Lizard poisons Spock!', ['sp', 'sc'] => 'Spock smashes Scissors!', ['sp', 'r'] => 'Spock vaporizes Rock!'}
+WIN_STATEMNTS = { ['p', 'r'] => 'Paper wraps Rock!',
+                  ['p', 'sp'] => 'Paper disproves Spock!',
+                  ['r', 'sc'] => 'Rock smashes Scissors!',
+                  ['r', 'l'] => 'Rock crushes Lizard!',
+                  ['sc', 'p'] => 'Scissors cut Paper!',
+                  ['sc', 'l'] => 'Scissors cut Lizard!',
+                  ['l', 'p'] => 'Lizard eats Paper!',
+                  ['l', 'sp'] => 'Lizard poisons Spock!',
+                  ['sp', 'sc'] => 'Spock smashes Scissors!',
+                  ['sp', 'r'] => 'Spock vaporizes Rock!'}
 
 
 # User messages
