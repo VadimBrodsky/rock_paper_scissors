@@ -37,5 +37,4 @@ class GameTest < Minitest::Test
     assert_equal @rules.check(@p1, data).winner, nil
   end
 
-
 end

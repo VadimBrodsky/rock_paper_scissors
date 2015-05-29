@@ -12,7 +12,7 @@ class Hand
 
   def throw_random
     @shape = HANDS.keys.sample
-    @description = HANDS[self.shape]
+    @description = HANDS[shape]
     self
   end
 
@@ -37,8 +37,8 @@ class Player
     self.hand = hand
   end
 
-  def print_pick
-    "=> #{self.name} picked #{self.hand.description}."
+  def to_s
+    "=> #{name} picked #{hand.description}."
   end
 end
 
@@ -55,9 +55,13 @@ class Rules
     self
   end
 
+  def to_s
+    winner ? "#{statement}\n#{winner} won!" : "#{statement}"
+  end
+
   private
 
-    WIN_CONDITIONS = { 'r' => ['l', 's'] ,'p' => ['r', 'sp'], 'sc' => ['p', 'l'],
+    WIN_CONDITIONS = { 'r' => ['l', 'sc'] ,'p' => ['r', 'sp'], 'sc' => ['p', 'l'],
                        'l' => ['p', 'sp'], 'sp' => ['r', 'sc'] }
 
     WIN_STATEMENTS = {['p',  'r' ]  => 'Paper wraps Rock!',
@@ -91,21 +95,50 @@ end
 
 
 class Game
-  attr_reader :player_choice
+  attr_reader   :player_choice
+  attr_accessor :player_name
 
   def initialize
+    clear_screen
+    print_intro_message
   end
 
   def print_intro_message
-    puts "Play Rock Paper Scissors Lizard Spock!"
+    puts '####### ROCK / PAPER / SCISSORS / LIZARD /  SPOCK #######'
+  end
+
+  def clear_screen
+    system('clear')
+  end
+
+  def ask_player_name
+    print 'What is your name? '
+    @player_name = gets.chomp.downcase.capitalize!
   end
 
   def ask_player_input
     loop do
-      print "Choose one: (R/P/Sc/L/Sp) "
+      print 'Choose one: (R/P/Sc/L/Sp) '
       @player_choice = gets.chomp.downcase
       break if Hand.valid_shape?(@player_choice)
     end
   end
-  
+
+  def ask_play_again
+    player_choice = ''
+    loop do
+      print 'Play again? (Y/N) '
+      player_choice = gets.chomp.downcase
+      break if player_choice == 'n' || player_choice == 'y'
+    end
+    player_choice == 'y'
+  end
+
+  def print_line_break
+    puts ''
+  end
+
+  def print_bye
+    puts "Live long and prosper!"
+  end
 end

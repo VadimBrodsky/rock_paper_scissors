@@ -12,7 +12,7 @@ end
 
 desc 'Run App'
 task :run do
-  ruby 'blackjack.rb'
+  ruby 'rock_paper_scissors_lizard_spock_oop.rb'
 end
 
 task default: :run
