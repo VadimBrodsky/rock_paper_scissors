@@ -12,7 +12,7 @@ end
 
 desc 'Run App'
 task :run do
-  ruby 'rock_paper_scissors_lizard_spock_oop.rb'
+  ruby 'rock_paper_scissors_lizard_spock.rb'
 end
 
 task default: :run
