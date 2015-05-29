@@ -1,5 +1,6 @@
-require 'pry'
+# require 'pry'
 
+# The hand shapes and descritions - act as game pieces
 class Hand
   HANDS = { 'p' => 'Paper', 'r' => 'Rock', 'sc' => 'Scissors',
             'sp' => 'Spock', 'l' => 'Lizard' }
@@ -29,6 +30,7 @@ class Hand
   end
 end
 
+# The player of the game, expects a name and a hand object
 class Player
   attr_accessor :name, :hand
 
@@ -42,6 +44,7 @@ class Player
   end
 end
 
+# The rules of the game, who wins who and the description
 class Rules
   attr_reader :winner, :statement
 
@@ -61,41 +64,40 @@ class Rules
 
   private
 
-    WIN_CONDITIONS = { 'r' => ['l', 'sc'] ,'p' => ['r', 'sp'], 'sc' => ['p', 'l'],
-                       'l' => ['p', 'sp'], 'sp' => ['r', 'sc'] }
+  WIN_CONDITIONS = { 'r' => %w(l sc), 'p' => %w(r sp), 'sc' => %w(p l),
+                     'l' => %w(p sp), 'sp' => %w(r sc) }
 
-    WIN_STATEMENTS = {['p',  'r' ]  => 'Paper wraps Rock!',
-                      ['p',  'sp']  => 'Paper disproves Spock!',
-                      ['r',  'sc']  => 'Rock smashes Scissors!',
-                      ['r',  'l' ]  => 'Rock crushes Lizard!',
-                      ['sc', 'p' ]  => 'Scissors cut Paper!',
-                      ['sc', 'l' ]  => 'Scissors cut Lizard!',
-                      ['l',  'p' ]  => 'Lizard eats Paper!',
-                      ['l',  'sp']  => 'Lizard poisons Spock!',
-                      ['sp', 'sc']  => 'Spock smashes Scissors!',
-                      ['sp', 'r' ]  => 'Spock vaporizes Rock!'}
+  WIN_STATEMENTS = {  %w(p  r )  => 'Paper wraps Rock!',
+                      %w(p  sp)  => 'Paper disproves Spock!',
+                      %w(r  sc)  => 'Rock smashes Scissors!',
+                      %w(r  l )  => 'Rock crushes Lizard!',
+                      %w(sc p )  => 'Scissors cut Paper!',
+                      %w(sc l )  => 'Scissors cut Lizard!',
+                      %w(l  p )  => 'Lizard eats Paper!',
+                      %w(l  sp)  => 'Lizard poisons Spock!',
+                      %w(sp sc)  => 'Spock smashes Scissors!',
+                      %w(sp r )  => 'Spock vaporizes Rock!' }
 
-    def check_for_tie(player_1, player_2)
-      if player_1.hand.shape == player_2.hand.shape
-        @winner  = nil
-        @statement = 'It\'s a tie.'
+  def check_for_tie(player_1, player_2)
+    return unless player_1.hand.shape == player_2.hand.shape
+    @winner  = nil
+    @statement = 'It\'s a tie.'
+  end
+
+  def check_winner(player_1, player_2)
+    WIN_CONDITIONS.each do |key, value|
+      if key == player_1.hand.shape && value.include?(player_2.hand.shape)
+        @winner = player_1.name
+        @statement = WIN_STATEMENTS[[player_1.hand.shape, player_2.hand.shape]]
+        break
       end
     end
-
-    def check_winner(player_1, player_2)
-      WIN_CONDITIONS.each do |key, value|
-        if key == player_1.hand.shape && value.include?(player_2.hand.shape)
-          @winner = player_1.name
-          @statement = WIN_STATEMENTS[[player_1.hand.shape, player_2.hand.shape]]
-          break
-        end
-      end
-    end
+  end
 end
 
-
+# The main game class, used for input and messaging
 class Game
-  attr_reader   :player_choice
+  attr_reader :player_choice
   attr_accessor :player_name
 
   def initialize
@@ -139,6 +141,6 @@ class Game
   end
 
   def print_bye
-    puts "Live long and prosper!"
+    puts 'Live long and prosper!'
   end
 end

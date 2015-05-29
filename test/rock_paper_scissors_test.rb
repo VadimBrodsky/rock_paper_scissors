@@ -36,5 +36,4 @@ class GameTest < Minitest::Test
     data = Player.new('Data', @h1)
     assert_equal @rules.check(@p1, data).winner, nil
   end
-
 end
