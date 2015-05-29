@@ -23,6 +23,10 @@ class Hand
     end
     self
   end
+
+  def self.valid_shape?(shape)
+    HANDS.key?(shape)
+  end
 end
 
 class Player
@@ -31,6 +35,10 @@ class Player
   def initialize(name = nil, hand = nil)
     self.name = name
     self.hand = hand
+  end
+
+  def print_pick
+    "=> #{self.name} picked #{self.hand.description}."
   end
 end
 
@@ -83,41 +91,21 @@ end
 
 
 class Game
-  attr_reader :player_1, :player_2
+  attr_reader :player_choice
 
-  def initialize(player_1, player_2)
-    @player_1 = player_1
-    @player_2 = player_2
+  def initialize
   end
 
-  def play_game
-    check_for_tie(@player_1, @player_2)
-    check_for_winner(@player_1, @player_2)
-
-    result = Rules.new.check_rules(player_1, player_2)
-    result.winner
-    win.statment
+  def print_intro_message
+    puts "Play Rock Paper Scissors Lizard Spock!"
   end
 
+  def ask_player_input
+    loop do
+      print "Choose one: (R/P/Sc/L/Sp) "
+      @player_choice = gets.chomp.downcase
+      break if Hand.valid_shape?(@player_choice)
+    end
+  end
+  
 end
-
-# h1 = Hand.new
-# h1.throw_random
-#
-# h2 = Hand.new
-# h2.throw_random
-#
-# p1 = Player.new
-# p2 = Player.new
-#
-# p1.name = 'Jonny'
-# p1.hand = h1
-#
-# p2.name = 'Computer'
-# p2.hand = h2
-#
-# outcome = Rules.new
-#
-# binding.pry
-#
-# p outcome.check_rules(p1, p2)
