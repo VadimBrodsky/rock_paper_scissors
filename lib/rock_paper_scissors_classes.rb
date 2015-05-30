@@ -94,12 +94,13 @@ end
 
 # The main game class, used for input and messaging
 class Game
-  attr_reader :player_choice
-  attr_accessor :player_name
+  attr_reader :player_choice, :outcome
+  attr_accessor :player_name, :player_1, :player_2
 
   def initialize
     clear_screen
     print_intro_message
+    ask_player_name
   end
 
   def print_intro_message
@@ -108,6 +109,34 @@ class Game
 
   def clear_screen
     system('clear')
+  end
+
+  def setup_players
+    self.player_1 = Player.new(player_name, Hand.new(player_choice))
+    self.player_2 = Player.new('Kirk', Hand.new.throw_random)
+  end
+
+  def finish_game
+    @outcome = Rules.new
+    @outcome.check(player_1, player_2)
+  end
+
+  def play
+    loop do
+      clear_screen
+      ask_player_input
+      print_line_break
+
+      setup_players
+
+      puts player_1
+      puts "#{player_2}\n\n"
+
+      finish_game
+      puts "#{outcome}\n\n"
+      break unless ask_play_again
+    end
+    print_bye
   end
 
   def ask_player_name
