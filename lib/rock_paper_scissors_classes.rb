@@ -48,9 +48,6 @@ end
 class Rules
   attr_reader :winner, :statement
 
-  def initialize
-  end
-
   def check(player_1, player_2)
     check_for_tie(player_1, player_2) if @winner.nil?
     check_winner(player_1, player_2)  if @winner.nil?
@@ -115,7 +112,7 @@ class Game
 
   def ask_player_name
     print 'What is your name? '
-    @player_name = gets.chomp.downcase.capitalize!
+    self.player_name = gets.chomp.capitalize!
   end
 
   def ask_player_input
@@ -131,7 +128,7 @@ class Game
     loop do
       print 'Play again? (Y/N) '
       player_choice = gets.chomp.downcase
-      break if player_choice == 'n' || player_choice == 'y'
+      break if %w(y n).include? player_choice
     end
     player_choice == 'y'
   end
